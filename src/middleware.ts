@@ -5,8 +5,11 @@ import { SUPABASE_ANON_KEY, SUPABASE_CONFIGURED, SUPABASE_URL } from "@/lib/supa
 // Refreshes the Supabase session on each request so Server Components see a
 // current auth state. It does NOT gate any route — access is additive; the
 // public tracker and Discovery stay open to everyone.
-// (Next 16 "proxy" convention, formerly "middleware".)
-export async function proxy(request: NextRequest) {
+//
+// Uses the classic `middleware.ts` convention (Edge runtime) rather than Next
+// 16's `proxy.ts`, because proxy always runs on the Node runtime which the
+// OpenNext Cloudflare adapter can't execute yet. Revisit when it supports it.
+export async function middleware(request: NextRequest) {
   let response = NextResponse.next({ request });
   if (!SUPABASE_CONFIGURED) return response;
 
