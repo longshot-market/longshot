@@ -5,13 +5,14 @@ const LINK = "color: #2563eb; font-weight: 700; text-decoration: none;";
 
 const banner = `
 <div style="padding: 4px 0 20px 0; border-bottom: 1px solid #e5e7eb; margin-bottom: 28px;">
-  <a href="${SITE}"><img src="${SITE}/longshot-wordmark.png" alt="Longshot" height="30" width="62" style="display: block; border: 0;" /></a>
+  <a href="${SITE}"><img src="${SITE}/longshot-wordmark.png" alt="Longshot" height="42" width="87" style="display: block; border: 0;" /></a>
 </div>`;
 
 const footer = `
 <div style="margin-top: 32px; padding-top: 16px; border-top: 1px solid #e5e7eb;">
   <a href="https://x.com/longshot_market" style="text-decoration: none; margin-right: 14px;"><img src="${SITE}/social/x.png" alt="X" width="18" height="18" style="vertical-align: middle; border: 0;" /></a>
-  <a href="https://github.com/hsantana/longshot" style="text-decoration: none;"><img src="${SITE}/social/github.png" alt="GitHub" width="18" height="18" style="vertical-align: middle; border: 0;" /></a>
+  <a href="https://github.com/hsantana/longshot" style="text-decoration: none; margin-right: 14px;"><img src="${SITE}/social/github.png" alt="GitHub" width="18" height="18" style="vertical-align: middle; border: 0;" /></a>
+  <a href="${SITE}" style="text-decoration: none;"><img src="${SITE}/social/longshot.png" alt="Longshot" width="19" height="19" style="vertical-align: middle; border: 0;" /></a>
 </div>`;
 
 /** One-time welcome, sent after a user verifies their email for the first time. */
@@ -35,7 +36,7 @@ ${banner}
 <p>
 <strong>Performance</strong> — your realized and unrealized PnL, win rate, and how every play paid off.<br>
 <strong>Portfolio</strong> — your open positions, exposure, and net worth over time.<br>
-<strong>Discovery</strong> — live markets ranked by how much you make per day of waiting.
+<strong>Discovery</strong> — filter markets and plays to suit your strategy.
 </p>
 
 <p><strong>P.S. What brought you here? Just hit reply, I read every email.</strong></p>
