@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
+import { useAuth } from "@/components/auth/AuthProvider";
 
 interface Suggestion {
   name: string;
@@ -17,12 +18,23 @@ export default function SearchBox({
   compact?: boolean;
 }) {
   const router = useRouter();
+  const { configured, user, openAuth } = useAuth();
+  // When Supabase is configured, logged-out users must sign up before searching.
+  const guarded = configured && !user;
   const [query, setQuery] = useState("");
   const [suggestions, setSuggestions] = useState<Suggestion[]>([]);
   const [open, setOpen] = useState(false);
   const [highlighted, setHighlighted] = useState(-1);
   const containerRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
   const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  function guard(): boolean {
+    if (!guarded) return false;
+    openAuth();
+    inputRef.current?.blur();
+    return true;
+  }
 
   useEffect(() => {
     function onClickOutside(e: MouseEvent) {
@@ -94,11 +106,19 @@ export default function SearchBox({
           />
         </svg>
         <input
+          ref={inputRef}
           type="text"
           value={query}
           onChange={(e) => onChange(e.target.value)}
           onKeyDown={onKeyDown}
-          onFocus={() => suggestions.length > 0 && setOpen(true)}
+          onMouseDown={(e) => {
+            if (guard()) e.preventDefault();
+          }}
+          onFocus={() => {
+            if (guard()) return;
+            if (suggestions.length > 0) setOpen(true);
+          }}
+          readOnly={guarded}
           autoFocus={autoFocus}
           placeholder="Polymarket username or 0x address"
           spellCheck={false}

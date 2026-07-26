@@ -43,6 +43,31 @@ are inlined at build time, so they need to be present in the environment where
 project API key (`phc_...`) is safe to ship in the browser; never commit a
 Personal API key (`phx_...`).
 
+### Accounts & auth (optional)
+
+Longshot supports email accounts via [Supabase](https://supabase.com) — a
+signup-first landing, 6-digit email OTP, and a linked Polymarket account per
+user. It's fully optional: with no Supabase env vars set, the auth layer no-ops
+and the public tracker works exactly as before (the landing keeps its search
+box). To enable it:
+
+1. Create a Supabase project (Data API on, auto-expose new tables off, automatic
+   RLS on) and run [`supabase/migrations/0001_auth_schema.sql`](supabase/migrations/0001_auth_schema.sql)
+   in the SQL Editor (creates `profiles` + `linked_accounts` with RLS).
+2. Add to `.env.local`:
+   ```bash
+   NEXT_PUBLIC_SUPABASE_URL=https://<ref>.supabase.co
+   NEXT_PUBLIC_SUPABASE_ANON_KEY=<anon key>   # public, protected by RLS
+   SUPABASE_SERVICE_ROLE_KEY=<service role>   # SECRET — server only, never commit
+   ```
+3. For the OTP **code** email (not a magic link), configure custom SMTP in
+   Supabase (e.g. [Resend](https://resend.com)) and edit the *Confirm signup* and
+   *Magic Link* templates to include `{{ .Token }}`. Set the OTP length to 6.
+
+The anon key is designed to be public; security comes from the RLS policies in
+the migration. The service role key and any SMTP/Resend keys are secret and live
+only in `.env.local` (locally) or as Cloudflare Worker secrets (production).
+
 ## Self-hosting
 
 The app deploys anywhere Next.js runs. The included config targets Cloudflare Workers via [OpenNext](https://opennext.js.org/cloudflare):
