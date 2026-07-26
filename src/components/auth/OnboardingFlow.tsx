@@ -47,6 +47,16 @@ export default function OnboardingFlow({ onDone }: { onDone?: () => void }) {
       setBusy(false);
       return setError("That code is invalid or expired — try again.");
     }
+    // Fire-and-forget welcome email; the API guards against sending twice.
+    const {
+      data: { session },
+    } = await supabase.auth.getSession();
+    if (session) {
+      void fetch("/api/welcome", {
+        method: "POST",
+        headers: { Authorization: `Bearer ${session.access_token}` },
+      }).catch(() => {});
+    }
     const {
       data: { user },
     } = await supabase.auth.getUser();
