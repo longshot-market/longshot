@@ -23,6 +23,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(BRAND.url),
   title: `${BRAND.name} — Polymarket performance tracker`,
   description: `${BRAND.tagline}. Open source, no login required.`,
   icons: {

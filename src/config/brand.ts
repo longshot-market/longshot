@@ -11,6 +11,9 @@ export const BRAND = {
   wordmarkAccent: ".",
   /** Short description used in page metadata and the home page. */
   tagline: "Polymarket performance & strategy tracker",
+  /** Canonical production origin (no trailing slash). Used for metadata,
+   *  sitemap, and robots. */
+  url: "https://longshot.market",
   /** Source repository shown in the footer/home page. */
   repoUrl: "https://github.com/hsantana/longshot",
   /** X (Twitter) profile shown in the footer. */
