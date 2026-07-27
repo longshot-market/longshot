@@ -4,8 +4,8 @@ const SITE = "https://longshot.market";
 const LINK = "color: #2563eb; font-weight: 700; text-decoration: none;";
 
 const banner = `
-<div style="padding: 4px 0 20px 0; border-bottom: 1px solid #e5e7eb; margin-bottom: 28px;">
-  <a href="${SITE}"><img src="${SITE}/longshot-wordmark.png" alt="Longshot" height="42" width="87" style="display: block; border: 0;" /></a>
+<div style="padding: 4px 0 0 0; margin-bottom: 20px;">
+  <a href="${SITE}"><img src="${SITE}/longshot-wordmark-dark.png" alt="Longshot" height="77" width="206" style="display: block; border: 0;" /></a>
 </div>`;
 
 const footer = `
