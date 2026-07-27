@@ -5,7 +5,7 @@ const LINK = "color: #2563eb; font-weight: 700; text-decoration: none;";
 
 const banner = `
 <div style="padding: 4px 0 0 0; margin-bottom: 20px;">
-  <a href="${SITE}"><img src="${SITE}/longshot-wordmark-dark.png" alt="Longshot" height="77" width="206" style="display: block; border: 0;" /></a>
+  <a href="${SITE}"><img src="${SITE}/longshot-wordmark-dark.png" alt="Longshot" height="77" width="161" style="display: block; border: 0;" /></a>
 </div>`;
 
 const footer = `
