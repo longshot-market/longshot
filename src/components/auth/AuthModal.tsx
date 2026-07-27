@@ -34,7 +34,7 @@ export default function AuthModal({ onClose }: { onClose: () => void }) {
             <path d="m4 4 8 8M12 4l-8 8" strokeLinecap="round" />
           </svg>
         </button>
-        <OnboardingFlow onDone={onClose} />
+        <OnboardingFlow onDone={onClose} branded />
       </div>
     </div>
   );

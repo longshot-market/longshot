@@ -6,11 +6,20 @@
 import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
+import BrandIcon from "@/components/BrandIcon";
 import { errorClass, inputClass, linkBtn, primaryBtn } from "./ui";
 
 type Step = "email" | "otp";
 
-export default function OnboardingFlow({ onDone }: { onDone?: () => void }) {
+// `branded` shows the centered logo + heading (used in the modal). The inline
+// landing usage leaves it off, since the page already carries the big wordmark.
+export default function OnboardingFlow({
+  onDone,
+  branded = false,
+}: {
+  onDone?: () => void;
+  branded?: boolean;
+}) {
   const router = useRouter();
   const supabase = useMemo(() => createClient(), []);
 
@@ -78,22 +87,32 @@ export default function OnboardingFlow({ onDone }: { onDone?: () => void }) {
 
   if (step === "email") {
     return (
-      <form onSubmit={sendCode} className="space-y-3">
-        <input
-          type="email"
-          required
-          autoFocus
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="you@email.com"
-          autoComplete="email"
-          className={inputClass}
-        />
-        {error && <p className={errorClass}>{error}</p>}
-        <button type="submit" disabled={busy} className={`${primaryBtn} text-[0.9625rem]`}>
-          {busy ? "Sending…" : "Join Longshot"}
-        </button>
-      </form>
+      <div className="space-y-5">
+        {branded && (
+          <div className="flex flex-col items-center text-center">
+            <BrandIcon className="h-12 w-12" />
+            <h2 className="mt-4 text-lg font-semibold text-zinc-900 dark:text-zinc-100">
+              What&rsquo;s your email address?
+            </h2>
+          </div>
+        )}
+        <form onSubmit={sendCode} className="space-y-3">
+          <input
+            type="email"
+            required
+            autoFocus
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder={branded ? "Enter your email address…" : "you@email.com"}
+            autoComplete="email"
+            className={inputClass}
+          />
+          {error && <p className={errorClass}>{error}</p>}
+          <button type="submit" disabled={busy} className={`${primaryBtn} text-[0.9625rem]`}>
+            {busy ? "Sending…" : "Join Longshot"}
+          </button>
+        </form>
+      </div>
     );
   }
 
