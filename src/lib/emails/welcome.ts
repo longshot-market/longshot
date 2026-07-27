@@ -5,7 +5,7 @@ const LINK = "color: #2563eb; font-weight: 700; text-decoration: none;";
 
 const banner = `
 <div style="padding: 4px 0 0 0; margin-bottom: 20px;">
-  <a href="${SITE}"><img src="${SITE}/longshot-wordmark-dark.png" alt="Longshot" height="77" width="206" style="display: block; border: 0;" /></a>
+  <a href="${SITE}"><img src="${SITE}/longshot-wordmark-dark.png" alt="Longshot" height="77" width="138" style="display: block; border: 0;" /></a>
 </div>`;
 
 const footer = `
@@ -33,11 +33,11 @@ ${banner}
 
 <p>Here's what you can do:</p>
 
-<p>
-<strong>Performance</strong> — your realized and unrealized PnL, win rate, and how every play paid off.<br>
-<strong>Portfolio</strong> — your open positions, exposure, and net worth over time.<br>
-<strong>Discovery</strong> — filter markets and plays to suit your strategy.
-</p>
+<ul style="margin: 0 0 16px; padding-left: 22px;">
+<li style="margin-bottom: 6px;"><strong>Performance</strong>: your realized and unrealized PnL, win rate, and how every play paid off.</li>
+<li style="margin-bottom: 6px;"><strong>Portfolio</strong>: your open positions, exposure, and net worth over time.</li>
+<li><strong>Discovery</strong>: filter markets and plays to suit your strategy.</li>
+</ul>
 
 <p><strong>P.S. What brought you here? Just hit reply, I read every email.</strong></p>
 
