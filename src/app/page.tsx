@@ -4,6 +4,7 @@ import Wordmark from "@/components/Wordmark";
 import ThemeToggle from "@/components/ThemeToggle";
 import OnboardingFlow from "@/components/auth/OnboardingFlow";
 import AuthButtons from "@/components/auth/AuthButtons";
+import Faq from "@/components/Faq";
 import { BRAND } from "@/config/brand";
 import { SUPABASE_CONFIGURED } from "@/lib/supabase/config";
 import { getPrimaryAccount, getUser } from "@/lib/auth";
@@ -53,7 +54,7 @@ export default async function Home() {
         <AuthButtons />
         <ThemeToggle />
       </div>
-      <div className="mx-auto flex w-full max-w-xl flex-1 flex-col justify-center pb-24 text-center">
+      <div className="mx-auto flex min-h-[calc(100dvh-8rem)] w-full max-w-xl flex-col justify-center text-center">
         <h1>
           <Wordmark className="mx-auto h-[144px]" />
         </h1>
@@ -64,6 +65,7 @@ export default async function Home() {
           {authed ? <OnboardingFlow /> : <SearchBox autoFocus />}
         </div>
       </div>
+      <Faq />
     </main>
   );
 }
