@@ -13,6 +13,8 @@ export const BRAND = {
   tagline: "Polymarket performance & strategy tracker",
   /** Source repository shown in the footer/home page. */
   repoUrl: "https://github.com/hsantana/longshot",
+  /** X (Twitter) profile shown in the footer. */
+  xUrl: "https://x.com/longshot_market",
   /** Creator credit shown in the global footer. */
   creator: "Campo Base Labs SL",
 } as const;
