@@ -17,7 +17,14 @@ interface Suggestion {
 
 const isWallet = (s: string) => /^0x[a-fA-F0-9]{40}$/.test(s.trim());
 
-export default function AccountLinkForm() {
+// `onLinked` lets a parent flow take over after the account is saved (e.g. to
+// show the onboarding questionnaire). When omitted, the form navigates straight
+// to the user's tracker on its own.
+export default function AccountLinkForm({
+  onLinked,
+}: {
+  onLinked?: (handle: string) => void;
+}) {
   const router = useRouter();
   const supabase = useMemo(() => createClient(), []);
 
@@ -71,7 +78,12 @@ export default function AccountLinkForm() {
       setBusy(false);
       return setError(error.message);
     }
-    router.push(`/t/${encodeURIComponent(username ?? wallet ?? input)}`);
+    const handle = username ?? wallet ?? input;
+    if (onLinked) {
+      onLinked(handle);
+      return;
+    }
+    router.push(`/t/${encodeURIComponent(handle)}`);
     router.refresh();
   }
 

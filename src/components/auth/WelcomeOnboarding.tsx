@@ -1,9 +1,9 @@
-import AccountLinkForm from "./AccountLinkForm";
 import DashboardPreview from "./DashboardPreview";
+import WelcomeFlow from "./WelcomeFlow";
 
-// Onboarding step 2: a blurred analytics dashboard behind a mandatory modal
-// asking for the user's Polymarket account — so it feels like they're already
-// inside the product.
+// Onboarding step 2: a blurred analytics dashboard behind a mandatory modal.
+// The modal walks the user through linking their Polymarket account and then a
+// short questionnaire — so it feels like they're already inside the product.
 export default function WelcomeOnboarding() {
   return (
     <main className="relative flex-1 overflow-hidden">
@@ -19,11 +19,7 @@ export default function WelcomeOnboarding() {
       {/* The modal. */}
       <div className="relative z-10 flex min-h-[70vh] items-center justify-center p-4">
         <div className="w-full max-w-sm rounded-2xl border border-zinc-200 bg-white p-6 shadow-xl dark:border-zinc-800 dark:bg-zinc-900">
-          <h2 className="text-lg font-semibold">Link your Polymarket account</h2>
-          <p className="mb-4 mt-1 text-sm text-zinc-500 dark:text-zinc-400">
-            Enter a Polymarket username or wallet to see your performance.
-          </p>
-          <AccountLinkForm />
+          <WelcomeFlow />
         </div>
       </div>
     </main>
