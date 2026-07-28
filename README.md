@@ -42,7 +42,7 @@ You'll need a Cloudflare account with `wrangler` authenticated (`npx wrangler lo
 
 ## Contributing
 
-Not accepting external contributions yet (early v1). Bug reports and feature requests are welcome as [issues](https://github.com/longshot-market/longshot/issues). When contributions open, they're accepted under the same MIT License ("inbound = outbound").
+Open an issue for bugs and feature requests, or a pull request to contribute. Contributions are accepted under the same MIT License ("inbound = outbound").
 
 ## License and branding
 
