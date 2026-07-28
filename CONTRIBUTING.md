@@ -5,7 +5,7 @@ early v1 phase and the architecture is still settling. This will open up in a
 later phase; watch the repo for updates.
 
 Bug reports and feature requests are welcome as
-[GitHub issues](https://github.com/hsantana/longshot/issues) in the meantime.
+[GitHub issues](https://github.com/longshot-market/longshot/issues) in the meantime.
 
 ## License of contributions
 
