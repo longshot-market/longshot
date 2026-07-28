@@ -22,10 +22,19 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const title = `${BRAND.name} — Polymarket performance tracker`;
+const description = `${BRAND.tagline}. Open source.`;
+const ogImage = {
+  url: "/og.png",
+  width: 1200,
+  height: 630,
+  alt: `${BRAND.name} — ${BRAND.tagline}`,
+};
+
 export const metadata: Metadata = {
   metadataBase: new URL(BRAND.url),
-  title: `${BRAND.name} — Polymarket performance tracker`,
-  description: `${BRAND.tagline}. Open source, no login required.`,
+  title,
+  description,
   icons: {
     icon: [
       { url: favicon16.src, sizes: "16x16", type: "image/png" },
@@ -33,6 +42,22 @@ export const metadata: Metadata = {
       { url: icon512.src, sizes: "512x512", type: "image/png" },
     ],
     apple: [{ url: icon512.src }],
+  },
+  openGraph: {
+    type: "website",
+    siteName: BRAND.name,
+    url: BRAND.url,
+    title,
+    description,
+    images: [ogImage],
+  },
+  twitter: {
+    card: "summary_large_image",
+    site: "@longshot_market",
+    creator: "@longshot_market",
+    title,
+    description,
+    images: [ogImage],
   },
 };
 
