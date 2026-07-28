@@ -51,6 +51,15 @@ export default function RootLayout({
         <Script id="theme-init" strategy="beforeInteractive">
           {THEME_INIT_SCRIPT}
         </Script>
+        {/* Ahrefs Web Analytics — only on instances that set the key (see .env.example). */}
+        {process.env.NEXT_PUBLIC_AHREFS_ANALYTICS_KEY && (
+          <Script
+            id="ahrefs-analytics"
+            src="https://analytics.ahrefs.com/analytics.js"
+            data-key={process.env.NEXT_PUBLIC_AHREFS_ANALYTICS_KEY}
+            strategy="afterInteractive"
+          />
+        )}
       </head>
       <body className="min-h-full flex flex-col">
         <PostHogProvider>
