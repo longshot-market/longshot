@@ -119,13 +119,6 @@ const FAQ: FaqItem[] = [
     ],
   },
   {
-    q: "Does Longshot place trades for me?",
-    a: [
-      { p: "No. Longshot is an analytics and market discovery platform." },
-      { p: "It does not execute trades, manage funds, or make decisions on your behalf." },
-    ],
-  },
-  {
     q: "Who is Longshot for?",
     a: [
       { p: "Longshot is for Polymarket users who want to:" },
