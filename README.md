@@ -9,10 +9,10 @@ Enter any Polymarket username or wallet address and see that account's open posi
 Longshot is a Next.js app whose server routes call Polymarket's public APIs:
 
 - **Gamma API** (`gamma-api.polymarket.com`) — profile search (username → wallet address)
-- **Data API** (`data-api.polymarket.com`) — open positions (`/positions`), closed positions (`/closed-positions`), portfolio value (`/value`)
-- **Leaderboard API** (`lb-api.polymarket.com`) — all-time realized profit (`/profit`)
+- **Data API** (`data-api.polymarket.com`) — open/closed positions and portfolio value
+- **Leaderboard API** (`lb-api.polymarket.com`) — all-time realized profit
 
-Requests go through the app's own server (not the browser) so lookups are shielded from CORS changes and can be cached at the edge.
+Requests run server-side (not from the browser) so lookups are shielded from CORS changes and can be cached at the edge.
 
 ## Running locally
 
@@ -23,50 +23,12 @@ npm run dev
 
 Open http://localhost:3000. No environment variables or secrets are required.
 
-### Analytics (optional)
+## Optional integrations
 
-Longshot supports [PostHog](https://posthog.com) product analytics. It's fully
-optional — with no key configured, the tracking code is a no-op and nothing is
-sent. To enable it, copy `.env.example` to `.env.local` and set your own
-project's values:
+Both are off by default — with no env vars set, the code no-ops and the public tracker works unchanged. Copy `.env.example` to `.env.local` and fill in what you need; that file documents each variable and its secret-handling rules.
 
-```bash
-cp .env.example .env.local
-# then edit .env.local:
-#   NEXT_PUBLIC_POSTHOG_KEY=phc_your_project_key
-#   NEXT_PUBLIC_POSTHOG_HOST=https://eu.i.posthog.com
-```
-
-`.env.local` is gitignored and must not be committed. The `NEXT_PUBLIC_*` values
-are inlined at build time, so they need to be present in the environment where
-`npm run deploy` builds (not only as a Cloudflare Worker runtime variable). The
-project API key (`phc_...`) is safe to ship in the browser; never commit a
-Personal API key (`phx_...`).
-
-### Accounts & auth (optional)
-
-Longshot supports email accounts via [Supabase](https://supabase.com) — a
-signup-first landing, 6-digit email OTP, and a linked Polymarket account per
-user. It's fully optional: with no Supabase env vars set, the auth layer no-ops
-and the public tracker works exactly as before (the landing keeps its search
-box). To enable it:
-
-1. Create a Supabase project (Data API on, auto-expose new tables off, automatic
-   RLS on) and run [`supabase/migrations/0001_auth_schema.sql`](supabase/migrations/0001_auth_schema.sql)
-   in the SQL Editor (creates `profiles` + `linked_accounts` with RLS).
-2. Add to `.env.local`:
-   ```bash
-   NEXT_PUBLIC_SUPABASE_URL=https://<ref>.supabase.co
-   NEXT_PUBLIC_SUPABASE_ANON_KEY=<anon key>   # public, protected by RLS
-   SUPABASE_SERVICE_ROLE_KEY=<service role>   # SECRET — server only, never commit
-   ```
-3. For the OTP **code** email (not a magic link), configure custom SMTP in
-   Supabase (e.g. [Resend](https://resend.com)) and edit the *Confirm signup* and
-   *Magic Link* templates to include `{{ .Token }}`. Set the OTP length to 6.
-
-The anon key is designed to be public; security comes from the RLS policies in
-the migration. The service role key and any SMTP/Resend keys are secret and live
-only in `.env.local` (locally) or as Cloudflare Worker secrets (production).
+- **[PostHog](https://posthog.com)** analytics — set `NEXT_PUBLIC_POSTHOG_KEY` / `NEXT_PUBLIC_POSTHOG_HOST`. `NEXT_PUBLIC_*` vars are inlined at build time, so they must be set wherever `npm run deploy` builds.
+- **[Supabase](https://supabase.com)** email accounts (6-digit OTP + a linked Polymarket account) — set the `SUPABASE_*` vars and run [`supabase/migrations/0001_auth_schema.sql`](supabase/migrations/0001_auth_schema.sql). For the OTP code email, configure custom SMTP in Supabase and include `{{ .Token }}` in the template.
 
 ## Self-hosting
 
@@ -76,34 +38,14 @@ The app deploys anywhere Next.js runs. The included config targets Cloudflare Wo
 npm run deploy    # builds with opennextjs-cloudflare and deploys with wrangler
 ```
 
-You'll need a Cloudflare account and `wrangler` authenticated (`npx wrangler login`, or `CLOUDFLARE_API_TOKEN` + `CLOUDFLARE_ACCOUNT_ID` in the environment). Adjust `wrangler.jsonc` to change the worker name or attach a custom domain.
-
-## Roadmap
-
-v1 is deliberately narrow: the tracker only. Planned for later phases, roughly in order:
-
-- Calendar view of results
-- Filters by market category, win-probability band, and time-to-resolution
-- Strategy/scout screener
-- Per-market chart view
-- Kalshi support
+You'll need a Cloudflare account with `wrangler` authenticated (`npx wrangler login`, or `CLOUDFLARE_API_TOKEN` + `CLOUDFLARE_ACCOUNT_ID`). Edit `wrangler.jsonc` to change the worker name or custom domain.
 
 ## Contributing
 
-Not accepting external contributions yet — see [CONTRIBUTING.md](CONTRIBUTING.md).
-When contributions open, they are accepted under the same MIT License
-("inbound = outbound").
+Not accepting external contributions yet (early v1). Bug reports and feature requests are welcome as [issues](https://github.com/longshot-market/longshot/issues). When contributions open, they're accepted under the same MIT License ("inbound = outbound").
 
 ## License and branding
 
-The source code is licensed under the [MIT License](LICENSE). The project
-name, logo, wordmark, and other brand assets are **not** included in that
-license — see [TRADEMARKS.md](TRADEMARKS.md) and [brand/README.md](brand/README.md).
-Forks and modified versions must use distinct branding and must not imply
-endorsement or official affiliation.
-
-To make rebranding easy, the name and wordmark are centralized in
-[`src/config/brand.ts`](src/config/brand.ts) — forks change that file (and
-replace anything under `brand/`) rather than hunting through the code.
+Source code is under the [MIT License](LICENSE). The Longshot name, logo, and wordmark are **not** — see [TRADEMARKS.md](TRADEMARKS.md). Forks must use distinct branding; the name and wordmark are centralized in [`src/config/brand.ts`](src/config/brand.ts) for easy rebranding.
 
 Copyright (c) 2026 Hugo Santana.
