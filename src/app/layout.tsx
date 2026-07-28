@@ -52,11 +52,11 @@ export default function RootLayout({
           {THEME_INIT_SCRIPT}
         </Script>
         {/* Ahrefs Web Analytics — only on instances that set the key (see .env.example). */}
-        {process.env.NEXT_PUBLIC_AHREFS_ANALYTICS_KEY && (
+        {process.env.AHREFS_ANALYTICS_KEY && (
           <Script
             id="ahrefs-analytics"
             src="https://analytics.ahrefs.com/analytics.js"
-            data-key={process.env.NEXT_PUBLIC_AHREFS_ANALYTICS_KEY}
+            data-key={process.env.AHREFS_ANALYTICS_KEY}
             strategy="afterInteractive"
           />
         )}
