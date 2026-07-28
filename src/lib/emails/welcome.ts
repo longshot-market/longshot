@@ -11,7 +11,7 @@ const banner = `
 const footer = `
 <div style="margin-top: 32px; padding-top: 16px; border-top: 1px solid #e5e7eb;">
   <a href="https://x.com/longshot_market" style="text-decoration: none; margin-right: 14px;"><img src="${SITE}/social/x.png" alt="X" width="18" height="18" style="vertical-align: middle; border: 0;" /></a>
-  <a href="https://github.com/hsantana/longshot" style="text-decoration: none; margin-right: 14px;"><img src="${SITE}/social/github.png" alt="GitHub" width="18" height="18" style="vertical-align: middle; border: 0;" /></a>
+  <a href="https://github.com/longshot-market/longshot" style="text-decoration: none; margin-right: 14px;"><img src="${SITE}/social/github.png" alt="GitHub" width="18" height="18" style="vertical-align: middle; border: 0;" /></a>
   <a href="${SITE}" style="text-decoration: none;"><img src="${SITE}/social/longshot.png" alt="Longshot" width="19" height="19" style="vertical-align: middle; border: 0;" /></a>
 </div>`;
 

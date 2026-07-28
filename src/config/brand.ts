@@ -15,7 +15,7 @@ export const BRAND = {
    *  sitemap, and robots. */
   url: "https://longshot.market",
   /** Source repository shown in the footer/home page. */
-  repoUrl: "https://github.com/hsantana/longshot",
+  repoUrl: "https://github.com/longshot-market/longshot",
   /** X (Twitter) profile shown in the footer. */
   xUrl: "https://x.com/longshot_market",
   /** Creator credit shown in the global footer. */

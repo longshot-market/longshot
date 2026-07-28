@@ -8,7 +8,7 @@ They are **not** licensed under the MIT License that covers the source code.
 
 - Factual references to the project: "based on Longshot", "a fork of
   Longshot", "compatible with Longshot", with a link to
-  https://github.com/hsantana/longshot.
+  https://github.com/longshot-market/longshot.
 - Unmodified redistribution of the source code with its original notices
   intact.
 - Nominative use in articles, reviews, tutorials, and comparisons.
@@ -36,4 +36,4 @@ code. Forks must:
    "Based on Longshot" phrasing is fine.
 
 Questions or permission requests: open an issue at
-https://github.com/hsantana/longshot/issues.
+https://github.com/longshot-market/longshot/issues.
