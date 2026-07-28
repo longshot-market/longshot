@@ -44,3 +44,6 @@ next-env.d.ts
 
 # opennext build output
 /.open-next/
+
+# wrangler / miniflare local state
+/.wrangler/
