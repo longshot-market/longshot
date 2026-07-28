@@ -32,28 +32,11 @@ const FAQ: FaqItem[] = [
     ],
   },
   {
-    q: "Do I need to connect my Polymarket account or wallet?",
+    q: "Do I need to connect a wallet, or share my password or private keys?",
     a: [
       { p: "No. Longshot only needs your public Polymarket username." },
       {
-        p: "You do not need to connect a wallet, approve transactions, or provide account access.",
-      },
-    ],
-  },
-  {
-    q: "Does Longshot need my password or private keys?",
-    a: [
-      {
-        p: "No. Longshot never asks for your password, seed phrase, private keys, or transaction permissions.",
-      },
-    ],
-  },
-  {
-    q: "Is Longshot secure?",
-    a: [
-      { p: "Longshot only reads public Polymarket data." },
-      {
-        p: "It cannot access your wallet, move funds, execute trades, or make transactions on your behalf.",
+        p: "You never connect a wallet, approve transactions, or share your password, seed phrase, or private keys.",
       },
     ],
   },
@@ -140,14 +123,6 @@ const FAQ: FaqItem[] = [
     a: [
       { p: "No. Longshot is an analytics and market discovery platform." },
       { p: "It does not execute trades, manage funds, or make decisions on your behalf." },
-    ],
-  },
-  {
-    q: "Is Longshot affiliated with Polymarket?",
-    a: [
-      {
-        p: "No. Longshot is an independent open-source project and is not operated by or affiliated with Polymarket.",
-      },
     ],
   },
   {
